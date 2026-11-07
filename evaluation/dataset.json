@@ -1,0 +1,19 @@
+{
+  "description": "Transparent sample cases for the fictional SolarDrip paper (sample_data/sample_paper.pdf).",
+  "cases": [
+    {"id": "water-saving", "question": "How much did water use decrease compared with flood irrigation?",
+     "answerable": true, "expected_facts": ["38 percent"], "expected_filename": "sample_paper.pdf", "expected_pages": [1]},
+    {"id": "microcontroller", "question": "What microcontroller does the controller use?",
+     "answerable": true, "expected_facts": ["ESP32"], "expected_filename": "sample_paper.pdf", "expected_pages": [2]},
+    {"id": "sampling-rate", "question": "How often do the soil moisture sensors sample?",
+     "answerable": true, "expected_facts": ["15 minutes"], "expected_filename": "sample_paper.pdf", "expected_pages": [2]},
+    {"id": "install-cost", "question": "What was the cost per installation?",
+     "answerable": true, "expected_facts": ["140 US dollars"], "expected_filename": "sample_paper.pdf", "expected_pages": [3]},
+    {"id": "crops-tested", "question": "Which crops were tested?",
+     "answerable": true, "expected_facts": ["tomato", "okra"], "expected_filename": "sample_paper.pdf", "expected_pages": [3]},
+    {"id": "out-of-scope-geography", "question": "What is the population of France?",
+     "answerable": false, "expected_facts": [], "expected_filename": null, "expected_pages": []},
+    {"id": "out-of-scope-wind", "question": "How do wind turbines generate electricity for the pump?",
+     "answerable": false, "expected_facts": [], "expected_filename": null, "expected_pages": []}
+  ]
+}

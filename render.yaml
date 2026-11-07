@@ -1,0 +1,40 @@
+# Render Blueprint: one free API service + one free static site.
+# Read docs/deployment.md first: Render's free web services have an EPHEMERAL disk and sleep when idle.
+services:
+  - type: web
+    name: papertrail-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && uvicorn app.main:create_app --factory --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: PAPERTRAIL_ACCESS_TOKEN
+        generateValue: true
+      - key: PAPERTRAIL_ENABLE_DOCS
+        value: "false"
+      - key: PAPERTRAIL_SEED_SAMPLE
+        value: "true"
+      - key: PAPERTRAIL_AI_PROVIDER
+        value: none
+      - key: PAPERTRAIL_EMBEDDING_PROVIDER
+        value: none
+      - key: PAPERTRAIL_CORS_ORIGINS
+        sync: false
+      - key: PAPERTRAIL_GEMINI_API_KEY
+        sync: false
+
+  - type: web
+    name: papertrail-web
+    runtime: static
+    buildCommand: cd frontend && npm ci && npm run build
+    staticPublishPath: frontend/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE
+        sync: false

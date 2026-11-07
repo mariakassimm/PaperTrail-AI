@@ -1,0 +1,5 @@
+-r requirements.txt
+pytest>=8
+reportlab>=4
+ruff>=0.5
+pyyaml>=6
